@@ -13,7 +13,7 @@ Require the plugin itself.
 By default the plugin listens on elements with the `.scroll-toggle` css class.
 
 ```
-<div class="nav-quick scroll-toggle" data-offset="#header" data-body-class="nav-quick-hidden">
+<div class="nav-quick scroll-toggle" data-offset="#header" data-body-class="nav-quick-hidden" data-init-show="true">
 </div>
 ```
 
@@ -35,3 +35,4 @@ In order to hide elements, you can use the following scss snippet and customize 
 |---|---|
 | data-offset | Set a minimum offset to start hide element (body scrollTop), can also be an valid CSS-Selector like `#header` |
 | data-body-class | Define a custom CSS class that should be toggled on body element on hide/show element. |
+| data-init-show | Set to false if you want to hide the element initially, if offset is below body scrollTop on load. |
