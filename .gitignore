@@ -1,0 +1,14 @@
+# OS
+.DS_Store
+Thumbs.db
+.sass-cache
+.sass_cache
+*.orig
+
+# IDE
+.build/
+.buildpath
+.idea/
+nbproject/
+.project
+.settings/
