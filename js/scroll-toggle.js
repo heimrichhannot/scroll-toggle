@@ -1,30 +1,21 @@
+import {utilsBundle} from '@hundh/contao-utils-bundle';
+
 function ScrollToggle(selector) {
-    this.enhancedElements = [];
-    this.elements = document.querySelectorAll(selector);
-    this.offsetTop = document.documentElement.scrollTop || document.body.scrollTop;
-    window.addEventListener("load", this.registerEvents.bind(this));
+    this.selector = selector;
+    this.registerEvents();
 }
 
-ScrollToggle.prototype.registerEvents = function () {
+ScrollToggle.prototype.registerEvents = function (event) {
     let self = this;
 
-    scrollHandler = function (event, element) {
-        self.toggle(element, event);
-    };
+    utilsBundle.event.addDynamicEventListener('scroll', this.selector, function (target, event) {
+        self.toggle(target, event);
+    }, window);
 
-    this.elements.forEach(element => {
-        eventType = 'scroll';
-        self.enhancedElements.push({
-            element, eventType, handler(event) {
-                scrollHandler(event, element)
-            }
-        });
-    });
-
-    // add listeners
-    self.enhancedElements.forEach(ee => {
-        window.addEventListener(ee.eventType, ee.handler);
-    });
+    utilsBundle.event.addDynamicEventListener('load', this.selector, function (target, event) {
+        self.offsetTop = document.documentElement.scrollTop || document.body.scrollTop;
+        self.toggle(target, event);
+    }, window);
 };
 
 ScrollToggle.prototype.toggle = function (element, event) {
@@ -38,7 +29,7 @@ ScrollToggle.prototype.toggle = function (element, event) {
         offsetTopElement = offsetTopRelatedElement.length ? (offsetTopRelatedElement.scrollHeight || offsetTopRelatedElement.offsetHeight) : (element.scrollHeight || element.offsetHeight);
     }
 
-    if(initShow === 'true' && offsetTopWindow === this.offsetTop){
+    if (initShow === 'true' && offsetTopWindow === this.offsetTop) {
         this.offsetTop = offsetTopWindow;
         return;
     }
@@ -48,7 +39,7 @@ ScrollToggle.prototype.toggle = function (element, event) {
         if (typeof bodyClass === 'string') {
             document.body.classList.remove(bodyClass);
         }
-    } else if (offsetTopWindow > offsetTopElement) {
+    } else if (offsetTopWindow >= offsetTopElement) {
         element.classList.add('scroll-hide');
         if (typeof bodyClass === 'string') {
             document.body.classList.add(bodyClass);
@@ -62,4 +53,4 @@ document.addEventListener("DOMContentLoaded", function () {
     new ScrollToggle('.scroll-toggle');
 });
 
-module.exports = ScrollToggle;
+export default ScrollToggle;

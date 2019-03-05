@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.1.0] - 2019-03-05
+
+### Changed
+- event listener handling, make usage of `@huh/contao-utils-bundle`
+- plugin name from `scroll-toggle` to `@hundh/scroll-toggle`
+- on `window.load` add `scroll-hide` class if offSetTop matches toggle conditions 
+
 ## [1.0.1] - 2018-10-29
 
 ### Added
