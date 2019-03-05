@@ -19,20 +19,21 @@ ScrollToggle.prototype.registerEvents = function (event) {
 };
 
 ScrollToggle.prototype.toggle = function (element, event) {
-    let offsetTopElement = element.getAttribute('data-offset') || element.scrollHeight || element.offsetHeight;
+    let offsetTopElement = element.getAttribute('data-offset') || element.offsetHeight;
     let offsetTopWindow = document.documentElement.scrollTop || document.body.scrollTop;
     let bodyClass = element.getAttribute('data-body-class');
     let initShow = String(element.getAttribute('data-init-show') || true);
 
     if (typeof offsetTopElement === 'string') {
         let offsetTopRelatedElement = document.querySelector(offsetTopElement);
-        offsetTopElement = offsetTopRelatedElement.length ? (offsetTopRelatedElement.scrollHeight || offsetTopRelatedElement.offsetHeight) : (element.scrollHeight || element.offsetHeight);
+        offsetTopElement = offsetTopRelatedElement.length ? offsetTopRelatedElement.offsetHeight : element.offsetHeight;
     }
 
     if (initShow === 'true' && offsetTopWindow === this.offsetTop) {
         this.offsetTop = offsetTopWindow;
         return;
     }
+
 
     if (offsetTopWindow < this.offsetTop) {
         element.classList.remove('scroll-hide');

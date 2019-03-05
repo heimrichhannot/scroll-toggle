@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [1.1.1] - 2019-03-05
+
+### Fixed
+- do no longer calc with `scrollHeight` use `offsetHeight`
+
 ## [1.1.0] - 2019-03-05
 
 ### Changed
