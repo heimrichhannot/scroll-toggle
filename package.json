@@ -1,6 +1,6 @@
 {
     "name": "@hundh/scroll-toggle",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "description": "Simple javascript plugin to toggle elements on scroll.",
     "main": "js/scroll-toggle",
     "repository": "git@github.com:heimrichhannot/scroll-toggle.git",
